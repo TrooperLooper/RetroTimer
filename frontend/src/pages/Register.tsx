@@ -21,7 +21,12 @@ const Register: React.FC = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [imagePreview, setImagePreview] = useState(defaultAvatar);
-  const [errors, setErrors] = useState({});
+  type RegisterErrors = {
+    email?: string;
+    firstName?: string;
+    lastName?: string;
+  };
+  const [errors, setErrors] = useState<RegisterErrors>({});
   const [loading, setLoading] = useState(false);
 
   const isFormValid = registerSchema.safeParse({
@@ -30,8 +35,8 @@ const Register: React.FC = () => {
     lastName,
   }).success;
 
-  const handleImageUpload = (e) => {
-    const file = e.target.files[0];
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files && e.target.files[0];
     if (file) {
       if (file.size > 5 * 1024 * 1024) {
         // 5MB
@@ -40,19 +45,22 @@ const Register: React.FC = () => {
       }
       const reader = new FileReader();
       reader.onloadend = () => {
-        setImagePreview(reader.result);
+        if (reader.result) {
+          setImagePreview(reader.result as string);
+        }
       };
       reader.readAsDataURL(file);
     }
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const result = registerSchema.safeParse({ email, firstName, lastName });
     if (!result.success) {
-      const formErrors = {};
-      result.error.errors.forEach((error) => {
-        formErrors[error.path[0]] = error.message;
+      const formErrors: RegisterErrors = {};
+      result.error.errors.forEach((error: { path: (string | number)[]; message: string }) => {
+        const key = error.path[0] as keyof RegisterErrors;
+        formErrors[key] = error.message;
       });
       setErrors(formErrors);
       return;
@@ -78,12 +86,19 @@ const Register: React.FC = () => {
       localStorage.setItem("currentUser", JSON.stringify(newUser));
       navigate(`/stats/${newUser._id}`);
     } catch (error) {
-      console.error("Registration error:", error.response?.data || error);
-      alert(
-        `Registration failed: ${
-          error.response?.data?.message || error.message || "Please try again"
-        }`
-      );
+      // Type guard for error
+      let message = "Please try again";
+      if (typeof error === "object" && error !== null) {
+        if ("response" in error && typeof error.response === "object" && error.response !== null && "data" in error.response) {
+          // @ts-ignore
+          message = error.response.data?.message || message;
+        } else if ("message" in error && typeof error.message === "string") {
+          // @ts-ignore
+          message = error.message;
+        }
+      }
+      console.error("Registration error:", error);
+      alert(`Registration failed: ${message}`);
     } finally {
       setLoading(false);
     }
