@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import StarIcon from "../Stars/StarIcon";
-import defaultAvatar from "../assets/user_default.jpeg";
+const defaultAvatar = "/assets/user_default.jpeg";
 
 interface SingleUserCardProps {
   user: {

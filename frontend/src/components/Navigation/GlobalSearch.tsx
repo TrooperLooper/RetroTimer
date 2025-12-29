@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import { FiSearch } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { apiClient } from "../api/apiClient";
-import playerIcon from "../assets/searchIcon_players.png";
-import gameIcon from "../assets/searchIcon_games.png";
+const playerIcon = "/assets/searchIcon_players.png";
+const gameIcon = "/assets/searchIcon_games.png";
 
 interface SearchResult {
   type: "user" | "game";

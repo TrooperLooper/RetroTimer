@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Layout from "../components/Navigation/Layout";
 import { apiClient, API_BASE_URL } from "../components/api/apiClient";
-import defaultAvatar from "../components/assets/user_default.jpeg";
+const defaultAvatar = "/assets/user_default.jpeg";
 import { FiPlus } from "react-icons/fi";
 
 type User = {

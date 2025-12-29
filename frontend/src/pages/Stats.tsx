@@ -5,10 +5,10 @@ import AllUsersBarGraph from "../components/Statistics/AllUsersBarGraph";
 import SingleUserCard from "../components/Statistics/SingleUserCard";
 import LeaderboardTable from "../components/Statistics/LeaderboardTable";
 import GameFrequencyGraph from "../components/Statistics/GameFrequencyGraph";
-import defaultAvatar from "../components/assets/user_default.jpeg";
+const defaultAvatar = "/assets/user_default.jpeg";
 import Layout from "../components/Navigation/Layout";
 import GameStatsRow from "../components/Statistics/GameStatsRow";
-import allPlayersIcon from "../components/assets/all_players.png";
+const allPlayersIcon = "/assets/all_players.png";
 import { fetchUserStats, fetchGames } from "../components/api/apiClient";
 
 function Stats() {

@@ -30,16 +30,8 @@ const RetroGameCard: React.FC<RetroGameCardProps> = ({
 const games = [
   { gameId: "1", gameName: "Pac-man", imageUrl: "/assets/pacman_gameicon.gif" },
   { gameId: "2", gameName: "Tetris", imageUrl: "/assets/tetris_gameicon.gif" },
-  {
-    gameId: "3",
-    gameName: "Space Invaders",
-    imageUrl: "/assets/space_gameicon.gif",
-  },
-  {
-    gameId: "4",
-    gameName: "Asteroids",
-    imageUrl: "/assets/asteroids_gameicon.gif",
-  },
+  { gameId: "3", gameName: "Space Invaders", imageUrl: "/assets/space_gameicon.gif" },
+  { gameId: "4", gameName: "Asteroids", imageUrl: "/assets/asteroids_gameicon.gif" },
 ];
 
 <div style={{ display: "flex", gap: "1rem" }}>

@@ -1,6 +1,6 @@
 import React from "react";
-import airholesSvg from "../assets/airholes.svg";
-import logoSvg from "../assets/logo_timer.svg";
+const airholesSvg = "/assets/airholes.svg";
+const logoSvg = "/assets/logo_timer.svg";
 
 interface RetroTimerProps {
   elapsedSeconds: number;

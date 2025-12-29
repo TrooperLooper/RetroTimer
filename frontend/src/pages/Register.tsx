@@ -6,7 +6,7 @@ import LeftStar from "../components/Stars/LeftStar";
 import RightStar from "../components/Stars/RightStar";
 import { createUser } from "../components/api/apiClient";
 import { useNavigate } from "react-router-dom";
-import defaultAvatar from "../components/assets/user_default.jpeg";
+const defaultAvatar = "/assets/user_default.jpeg";
 import Layout from "../components/Navigation/Layout";
 
 const registerSchema = z.object({
@@ -144,7 +144,7 @@ const Register: React.FC = () => {
                   <RightStar size={16} color="gold" />
                 </div>
                 <img
-                  src="./src/components/assets/svamp_animation.gif"
+                  src="/assets/svamp_animation.gif"
                   alt="Animated mushroom character for registration"
                   height={120}
                   width={120}

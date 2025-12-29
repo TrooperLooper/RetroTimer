@@ -2,10 +2,10 @@ import Layout from "../components/Navigation/Layout";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { fetchGames } from "../components/api/apiClient";
-import pacmanGif from "../components/assets/pacman_gameicon.gif";
-import asteroidsGif from "../components/assets/asteroids_gameicon.gif";
-import tetrisGif from "../components/assets/tetris_gameicon.gif";
-import spaceGif from "../components/assets/space_gameicon.gif";
+const pacmanGif = "/assets/pacman_gameicon.gif";
+const asteroidsGif = "/assets/asteroids_gameicon.gif";
+const tetrisGif = "/assets/tetris_gameicon.gif";
+const spaceGif = "/assets/space_gameicon.gif";
 
 // Map game names to their images and colors
 const gameAssets: Record<
