@@ -5,7 +5,7 @@ interface UserCardProps {
   profilePicture?: string;
 }
 
-const UserCard: React.FC<UserCardProps> = ({
+const UserCardComponent: React.FC<UserCardProps> = ({
   email,
   firstName,
   profilePicture,
@@ -35,4 +35,4 @@ export const mockUserCardData: UserCardProps[] = [
 ];
 
 // Usage example
-// <UserCard {...mockUserCardData[0]} />
+// <UserCardComponent {...mockUserCardData[0]} />

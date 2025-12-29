@@ -15,7 +15,6 @@ interface GameCardProps {
 }
 
 export const GameCard: React.FC<GameCardProps> = ({
-  gameName,
   gameImage,
   gameColor,
   buttonState,

@@ -58,7 +58,7 @@ const Register: React.FC = () => {
     const result = registerSchema.safeParse({ email, firstName, lastName });
     if (!result.success) {
       const formErrors: RegisterErrors = {};
-      result.error.errors.forEach((error: { path: (string | number)[]; message: string }) => {
+      (result.error as import("zod").ZodError<{ email: string; firstName: string; lastName: string }> ).errors.forEach((error: { path: (string | number)[]; message: string }) => {
         const key = error.path[0] as keyof RegisterErrors;
         formErrors[key] = error.message;
       });
