@@ -1,9 +1,19 @@
 import React from "react";
 
-const defaultAvatar = "/path/to/default/avatar.png"; // Update path
+const defaultAvatar = "/assets/user_default.jpeg";
 
 export const CurrentUserBadge: React.FC = () => {
-  const user = JSON.parse(localStorage.getItem("currentUser") || "null");
+  const [user, setUser] = React.useState<any>(
+    JSON.parse(localStorage.getItem("currentUser") || "null")
+  );
+
+  React.useEffect(() => {
+    const handleStorage = () => {
+      setUser(JSON.parse(localStorage.getItem("currentUser") || "null"));
+    };
+    window.addEventListener("storage", handleStorage);
+    return () => window.removeEventListener("storage", handleStorage);
+  }, []);
 
   if (!user) return null;
 
