@@ -5,21 +5,7 @@ interface UserCardProps {
   profilePicture?: string;
 }
 
-const UserCardComponent: React.FC<UserCardProps> = ({
-  email,
-  firstName,
-  profilePicture,
-}) => (
-  <div>
-    <img
-      src={profilePicture || "/assets/default_avatar.png"}
-      alt={firstName}
-      width={48}
-    />
-    <div>{firstName}</div>
-    <div>{email}</div>
-  </div>
-);
+// Removed unused UserCardComponent
 
 export const mockUserCardData: UserCardProps[] = [
   {

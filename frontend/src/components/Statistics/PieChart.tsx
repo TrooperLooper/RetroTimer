@@ -1,8 +1,6 @@
 import React from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
-import { useEffect, useState } from "react";
-import axios from "axios";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -17,21 +15,19 @@ const PieChart: React.FC<SingleGamePieChartProps> = ({
   gameName,
   minutesPlayed,
   iconUrl,
-
+  totalMinutes,
 }) => {
   const percent = totalMinutes > 0 ? (minutesPlayed / totalMinutes) * 100 : 0;
-
   const chartData = {
     labels: [gameName],
     datasets: [
       {
         data: [percent, 100 - percent],
-        backgroundColor: ["#FF6384", "#e5e7eb"], // main color + light gray
+        backgroundColor: ["#FF6384", "#e5e7eb"],
         borderWidth: 0,
       },
     ],
   };
-
   return (
     <div className="flex flex-col items-center ">
       {iconUrl && (

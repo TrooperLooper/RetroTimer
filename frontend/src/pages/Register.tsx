@@ -63,13 +63,11 @@ const Register: React.FC = () => {
           email: string;
           firstName: string;
           lastName: string;
-        }>
-      ).errors.forEach(
-        (error: { path: (string | number)[]; message: string }) => {
-          const key = error.path[0] as keyof RegisterErrors;
-          formErrors[key] = error.message;
-        }
-      );
+        }> & { errors: Array<{ path: (string | number)[]; message: string }> }
+      ).errors.forEach((error) => {
+        const key = error.path[0] as keyof RegisterErrors;
+        formErrors[key] = error.message;
+      });
       setErrors(formErrors);
       return;
     }
@@ -262,7 +260,10 @@ const Register: React.FC = () => {
                   {/* 2nd: Image preview and upload prompt */}
                   <div
                     className="flex flex-row gap-4 mb-2 items-center border-2 border-dashed bg-pink-400 border-white rounded-lg p-3 cursor-pointer w-full"
-                    onClick={() => document.getElementById("fileInput").click()}
+                    onClick={() => {
+                      const fileInput = document.getElementById("fileInput");
+                      if (fileInput) fileInput.click();
+                    }}
                   >
                     <img
                       src={imagePreview}
