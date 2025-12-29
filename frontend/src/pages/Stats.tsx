@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import BarGraph from "../components/Statistics/BarGraph";
 import WeeklyPlayTimeGraph from "../components/Statistics/WeeklyPlayTimeGraph";
 import AllUsersBarGraph from "../components/Statistics/AllUsersBarGraph";
@@ -12,38 +13,35 @@ const allPlayersIcon = "/assets/all_players.png";
 import { fetchUserStats, fetchGames } from "../components/api/apiClient";
 
 function Stats() {
+  const { userId } = useParams<{ userId: string }>();
+  const [user, setUser] = useState<any>(null);
   const [totalTimePlayed, setTotalTimePlayed] = useState(0);
   const [gamesData, setGamesData] = useState<
     { name: string; icon: string; percent: number }[]
   >([]);
   const [loading, setLoading] = useState(true);
 
-  // Get current user from localStorage
-  const currentUser = JSON.parse(
-    localStorage.getItem("currentUser") || "null"
-  ) || {
-    firstName: "Testy",
-    lastName: "McTestface",
-    profilePicture: defaultAvatar,
-  };
-
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        if (!currentUser._id) {
+        if (!userId) {
           setLoading(false);
           return;
         }
 
-        const res = await fetchUserStats(currentUser._id);
+        // Fetch user data
+        const userRes = await import("../components/api/apiClient").then(mod => mod.fetchUserById(userId));
+        setUser(userRes);
 
-        const totalMinutes = res.totalMinutes || 0;
-        const gameStats = res.gameStats || [];
+        // Fetch user stats
+        const statsRes = await import("../components/api/apiClient").then(mod => mod.fetchUserStats(userId));
+        const totalMinutes = statsRes.totalMinutes || 0;
+        const gameStats = statsRes.gameStats || [];
 
         setTotalTimePlayed(totalMinutes);
 
         // Fetch games from API and map with local icons
-        const apiGames = await fetchGames();
+        const apiGames = await import("../components/api/apiClient").then(mod => mod.fetchGames());
         const iconMap: Record<string, string> = {};
 
         const gamesWithPercent = apiGames.map((game: any) => {
@@ -77,7 +75,7 @@ function Stats() {
       }
     };
     fetchStats();
-  }, [currentUser._id]);
+  }, [userId]);
 
   if (loading) return <p>Loading...</p>;
 
@@ -96,7 +94,7 @@ function Stats() {
             {/* Single User Card */}
             <div className="flex justify-center w-full">
               <SingleUserCard
-                user={currentUser}
+                user={user || { firstName: "Testy", lastName: "McTestface", profilePicture: defaultAvatar }}
                 totalTimePlayed={totalTimePlayed}
               />
             </div>

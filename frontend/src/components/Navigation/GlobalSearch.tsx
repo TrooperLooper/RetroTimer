@@ -76,7 +76,7 @@ const GlobalSearch: React.FC = () => {
             type: "game" as const,
             id: game._id,
             name: game.name,
-            route: `/games`,
+            route: `/play/${game._id}`,
           }));
 
         setResults([...userResults, ...gameResults]);
