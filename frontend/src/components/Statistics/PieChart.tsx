@@ -29,19 +29,8 @@ const PieChart: React.FC<SingleGamePieChartProps> = ({
         backgroundColor: ["#FF6384", "#e5e7eb"], // main color + light gray
         borderWidth: 0,
       },
-    ],
-  };
 
-  return (
-    <div className="flex flex-col items-center ">
-      {iconUrl && (
-        <img
-          src={iconUrl}
-          alt={gameName}
-          className="w-12 h-12 mb-2"
-          onError={(e) => {
-            e.currentTarget.onerror = null;
-            e.currentTarget.style.display = "none";
+    export default PieChart;
           }}
         />
       )}
