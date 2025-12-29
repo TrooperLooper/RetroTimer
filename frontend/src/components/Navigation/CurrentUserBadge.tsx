@@ -19,15 +19,15 @@ export const CurrentUserBadge: React.FC = () => {
     // Monkey-patch localStorage.setItem/removeItem to dispatch event
     const origSetItem = localStorage.setItem;
     const origRemoveItem = localStorage.removeItem;
-    localStorage.setItem = function (key, value) {
-      origSetItem.apply(this, arguments);
-      if (key === "currentUser") {
+    localStorage.setItem = function (...args: any[]) {
+      origSetItem.apply(this, args);
+      if (args[0] === "currentUser") {
         window.dispatchEvent(new Event("currentUserChanged"));
       }
     };
-    localStorage.removeItem = function (key) {
-      origRemoveItem.apply(this, arguments);
-      if (key === "currentUser") {
+    localStorage.removeItem = function (...args: any[]) {
+      origRemoveItem.apply(this, args);
+      if (args[0] === "currentUser") {
         window.dispatchEvent(new Event("currentUserChanged"));
       }
     };
