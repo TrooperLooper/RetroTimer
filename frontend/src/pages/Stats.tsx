@@ -1,3 +1,4 @@
+import React from "react";
 import { useEffect, useState } from "react";
 import BarGraph from "../components/Statistics/BarGraph";
 import WeeklyPlayTimeGraph from "../components/Statistics/WeeklyPlayTimeGraph";
