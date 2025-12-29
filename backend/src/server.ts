@@ -2,12 +2,12 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
-import logger from "./utils/logger";
-import userRouter from "./routes/userRoutes";
-import gamesRouter from "./routes/GameRoutes";
-import sessionRouter from "./routes/sessionRoutes";
-import statisticsRouter from "./routes/statisticsRoutes";
-import { seedDatabase } from "./utils/seedDatabase";
+import logger from "./utils/logger.js";
+import userRouter from "./routes/userRoutes.js";
+import gamesRouter from "./routes/GameRoutes.js";
+import sessionRouter from "./routes/sessionRoutes.js";
+import statisticsRouter from "./routes/statisticsRoutes.js";
+import { seedDatabase } from "./utils/seedDatabase.js";
 
 dotenv.config();
 

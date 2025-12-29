@@ -1,5 +1,5 @@
 import express from "express";
-import { upload } from "../middleware/upload";
+import { upload } from "../middleware/upload.js";
 import {
   createUser,
   getAllUsers,
@@ -7,7 +7,7 @@ import {
   deleteUserById,
   updateUserById,
   uploadAvatar,
-} from "../controllers/userController";
+} from "../controllers/userController.js";
 
 const router = express.Router();
 

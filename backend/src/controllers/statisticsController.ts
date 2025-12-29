@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { GameSession } from "../models/GameSession";
-import { User } from "../models/User";
-import { Game } from "../models/Game";
+import { GameSession } from "../models/GameSession.js";
+import { User } from "../models/User.js";
+import { Game } from "../models/Game.js";
 import mongoose from "mongoose";
-import logger from "../utils/logger";
+import logger from "../utils/logger.js";
 
 // Get user's game statistics
 export const getUserStats = async (req: Request, res: Response) => {

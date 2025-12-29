@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import { Game } from "../models/Game";
-import { User } from "../models/User";
-import logger from "./logger";
+import { Game } from "../models/Game.js";
+import { User } from "../models/User.js";
+import logger from "./logger.js";
 
 dotenv.config();
 

@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { User } from "../models/User";
+import { User } from "../models/User.js";
 import { z } from "zod";
-import logger from "../utils/logger";
+import logger from "../utils/logger.js";
 
 const userSchema = z.object({
   email: z.string().email(),

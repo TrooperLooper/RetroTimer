@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { GameSession } from "../models/GameSession";
-import logger from "../utils/logger";
+import { GameSession } from "../models/GameSession.js";
+import logger from "../utils/logger.js";
 
 export const startSession = async (req: Request, res: Response) => {
   try {

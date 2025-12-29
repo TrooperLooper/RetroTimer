@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import { z } from "zod";
-import { Game } from "../models/Game";
-import logger from "../utils/logger";
-import { config } from "../config/database";
+import { Game } from "../models/Game.js";
+import logger from "../utils/logger.js";
+import { config } from "../config/database.js";
 
 const gameSchema = z.object({
   name: z.string(),

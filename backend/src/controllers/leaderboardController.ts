@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { User } from "../models/User";
-import { GameSession } from "../models/GameSession";
+import { User } from "../models/User.js";
+import { GameSession } from "../models/GameSession.js";
 import mongoose from "mongoose";
-import logger from "../utils/logger";
+import logger from "../utils/logger.js";
 
 export const getLeaderboard = async (req: Request, res: Response) => {
   try {

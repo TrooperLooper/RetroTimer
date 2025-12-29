@@ -6,7 +6,7 @@ import {
   getLeaderboard,
   getAllUsersLeaderboard,
   getGameFrequencyStats,
-} from "../controllers/statisticsController";
+} from "../controllers/statisticsController.js";
 
 const router = express.Router();
 

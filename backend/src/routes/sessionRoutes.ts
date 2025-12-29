@@ -4,10 +4,10 @@ import {
   stopSession,
   getStats,
   createSession,
-} from "../controllers/sessionController";
+} from "../controllers/sessionController.js";
 import mongoose from "mongoose"; // Import mongoose
-import { GameSession } from "../models/GameSession"; // Import the GameSession model
-import logger from "../utils/logger";
+import { GameSession } from "../models/GameSession.js"; // Import the GameSession model
+import logger from "../utils/logger.js";
 
 const router = express.Router();
 
