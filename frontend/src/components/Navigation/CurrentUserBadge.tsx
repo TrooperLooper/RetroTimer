@@ -12,7 +12,32 @@ export const CurrentUserBadge: React.FC = () => {
       setUser(JSON.parse(localStorage.getItem("currentUser") || "null"));
     };
     window.addEventListener("storage", handleStorage);
-    return () => window.removeEventListener("storage", handleStorage);
+
+    // Listen for custom event for same-tab localStorage changes
+    window.addEventListener("currentUserChanged", handleStorage);
+
+    // Monkey-patch localStorage.setItem/removeItem to dispatch event
+    const origSetItem = localStorage.setItem;
+    const origRemoveItem = localStorage.removeItem;
+    localStorage.setItem = function (key, value) {
+      origSetItem.apply(this, arguments);
+      if (key === "currentUser") {
+        window.dispatchEvent(new Event("currentUserChanged"));
+      }
+    };
+    localStorage.removeItem = function (key) {
+      origRemoveItem.apply(this, arguments);
+      if (key === "currentUser") {
+        window.dispatchEvent(new Event("currentUserChanged"));
+      }
+    };
+
+    return () => {
+      window.removeEventListener("storage", handleStorage);
+      window.removeEventListener("currentUserChanged", handleStorage);
+      localStorage.setItem = origSetItem;
+      localStorage.removeItem = origRemoveItem;
+    };
   }, []);
 
   if (!user) return null;
