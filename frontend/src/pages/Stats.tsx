@@ -30,18 +30,24 @@ function Stats() {
         }
 
         // Fetch user data
-        const userRes = await import("../components/api/apiClient").then(mod => mod.fetchUserById(userId));
+        const userRes = await import("../components/api/apiClient").then(
+          (mod) => mod.fetchUserById(userId)
+        );
         setUser(userRes);
 
         // Fetch user stats
-        const statsRes = await import("../components/api/apiClient").then(mod => mod.fetchUserStats(userId));
+        const statsRes = await import("../components/api/apiClient").then(
+          (mod) => mod.fetchUserStats(userId)
+        );
         const totalMinutes = statsRes.totalMinutes || 0;
         const gameStats = statsRes.gameStats || [];
 
         setTotalTimePlayed(totalMinutes);
 
         // Fetch games from API and map with local icons
-        const apiGames = await import("../components/api/apiClient").then(mod => mod.fetchGames());
+        const apiGames = await import("../components/api/apiClient").then(
+          (mod) => mod.fetchGames()
+        );
         const iconMap: Record<string, string> = {};
 
         const gamesWithPercent = apiGames.map((game: any) => {
@@ -94,7 +100,13 @@ function Stats() {
             {/* Single User Card */}
             <div className="flex justify-center w-full">
               <SingleUserCard
-                user={user || { firstName: "Testy", lastName: "McTestface", profilePicture: defaultAvatar }}
+                user={
+                  user || {
+                    firstName: "Testy",
+                    lastName: "McTestface",
+                    profilePicture: defaultAvatar,
+                  }
+                }
                 totalTimePlayed={totalTimePlayed}
               />
             </div>
