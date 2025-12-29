@@ -4,15 +4,10 @@ WORKDIR /app/backend
 
 COPY backend/package*.json ./
 COPY backend/tsconfig.json ./
-COPY backend/src ./src
 COPY backend/eslint.config.js ./
+COPY backend/src ./src
 COPY backend/logs ./logs
-COPY backend/config ./config
-COPY backend/controllers ./controllers
-COPY backend/middleware ./middleware
-COPY backend/models ./models
-COPY backend/routes ./routes
-COPY backend/utils ./utils
+COPY backend/public ./public
 
 RUN npm install
 RUN npm run build
