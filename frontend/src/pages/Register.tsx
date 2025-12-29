@@ -58,10 +58,18 @@ const Register: React.FC = () => {
     const result = registerSchema.safeParse({ email, firstName, lastName });
     if (!result.success) {
       const formErrors: RegisterErrors = {};
-      (result.error as import("zod").ZodError<{ email: string; firstName: string; lastName: string }> ).errors.forEach((error: { path: (string | number)[]; message: string }) => {
-        const key = error.path[0] as keyof RegisterErrors;
-        formErrors[key] = error.message;
-      });
+      (
+        result.error as import("zod").ZodError<{
+          email: string;
+          firstName: string;
+          lastName: string;
+        }>
+      ).errors.forEach(
+        (error: { path: (string | number)[]; message: string }) => {
+          const key = error.path[0] as keyof RegisterErrors;
+          formErrors[key] = error.message;
+        }
+      );
       setErrors(formErrors);
       return;
     }
@@ -89,7 +97,12 @@ const Register: React.FC = () => {
       // Type guard for error
       let message = "Please try again";
       if (typeof error === "object" && error !== null) {
-        if ("response" in error && typeof error.response === "object" && error.response !== null && "data" in error.response) {
+        if (
+          "response" in error &&
+          typeof error.response === "object" &&
+          error.response !== null &&
+          "data" in error.response
+        ) {
           // @ts-ignore
           message = error.response.data?.message || message;
         } else if ("message" in error && typeof error.message === "string") {

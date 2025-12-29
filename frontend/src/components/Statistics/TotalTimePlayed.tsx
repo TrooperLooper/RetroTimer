@@ -1,4 +1,3 @@
-
 interface TotalTimePlayedProps {
   mockMinutes?: number;
 }
