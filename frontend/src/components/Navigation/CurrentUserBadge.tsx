@@ -1,43 +1,32 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 
 const defaultAvatar = "/assets/user_default.jpeg";
+
 
 export const CurrentUserBadge: React.FC = () => {
   const [user, setUser] = React.useState<any>(
     JSON.parse(localStorage.getItem("currentUser") || "null")
   );
+  const location = useLocation();
 
+  // Update user when route changes (covers navigation)
   React.useEffect(() => {
-    const handleStorage = () => {
-      setUser(JSON.parse(localStorage.getItem("currentUser") || "null"));
-    };
-    window.addEventListener("storage", handleStorage);
+    setUser(JSON.parse(localStorage.getItem("currentUser") || "null"));
+  }, [location]);
 
-    // Listen for custom event for same-tab localStorage changes
-    window.addEventListener("currentUserChanged", handleStorage);
-
-    // Monkey-patch localStorage.setItem/removeItem to dispatch event
-    const origSetItem = localStorage.setItem;
-    const origRemoveItem = localStorage.removeItem;
-    localStorage.setItem = function (key: string, value: string) {
-      origSetItem.call(this, key, value);
-      if (key === "currentUser") {
-        window.dispatchEvent(new Event("currentUserChanged"));
-      }
-    };
-    localStorage.removeItem = function (key: string) {
-      origRemoveItem.call(this, key);
-      if (key === "currentUser") {
-        window.dispatchEvent(new Event("currentUserChanged"));
-      }
-    };
-
-    return () => {
-      window.removeEventListener("storage", handleStorage);
-      window.removeEventListener("currentUserChanged", handleStorage);
-      localStorage.setItem = origSetItem;
-      localStorage.removeItem = origRemoveItem;
-    };
+  // Poll localStorage every 500ms as a fallback (covers same-tab changes)
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      const stored = JSON.parse(localStorage.getItem("currentUser") || "null");
+      setUser((prev: any) => {
+        if (JSON.stringify(prev) !== JSON.stringify(stored)) {
+          return stored;
+        }
+        return prev;
+      });
+    }, 500);
+    return () => clearInterval(interval);
   }, []);
 
   if (!user) return null;
