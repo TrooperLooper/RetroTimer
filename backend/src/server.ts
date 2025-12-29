@@ -20,7 +20,7 @@ const MONGODB_URI =
 app.use(
   cors({
     origin: [
-      "https://RetroTimer.vercel.app", // <-- Add your actual Vercel URL here
+      "https://retro-timer-two.vercel.app", // <-- Add your actual Vercel URL here
       "http://localhost:5173",
       "http://localhost:5174",
       "http://localhost:5175",
