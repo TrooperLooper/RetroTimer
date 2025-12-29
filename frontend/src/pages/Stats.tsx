@@ -10,7 +10,7 @@ const defaultAvatar = "/assets/user_default.jpeg";
 import Layout from "../components/Navigation/Layout";
 import GameStatsRow from "../components/Statistics/GameStatsRow";
 const allPlayersIcon = "/assets/all_players.png";
-import { fetchUserStats, fetchGames } from "../components/api/apiClient";
+// import removed: fetchUserStats, fetchGames (now dynamically imported)
 
 function Stats() {
   const { userId } = useParams<{ userId: string }>();
