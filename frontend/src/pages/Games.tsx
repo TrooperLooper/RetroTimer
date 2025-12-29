@@ -165,7 +165,7 @@ function Games() {
   return (
     <>
       {/* Gradient background as a -z layer */}
-      <div className="fixed inset-0 -z-10 w-full h-full bg-gradient-to-b from-green-900 via-green-500 to-yellow-300" />
+      <div className="fixed inset-0 -z-10 w-full h-full bg-linear-to-b from-green-900 via-green-500 to-yellow-300" />
       <Layout>
         <div className="min-h-screen flex flex-col items-center justify-start pt-5 px-2 sm:px-8 relative">
           {/* Error message when no user is selected - now absolutely positioned above game cards */}

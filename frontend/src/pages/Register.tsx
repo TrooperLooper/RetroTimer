@@ -92,7 +92,7 @@ const Register: React.FC = () => {
   return (
     <>
       {/* Gradient background as a -z layer */}
-      <div className="fixed inset-0 -z-10 w-full h-full bg-gradient-to-t from-pink-400 via-pink-700 to-red-700" />
+      <div className="fixed inset-0 -z-10 w-full h-full bg-linear-to-t from-pink-400 via-pink-700 to-red-700" />
       <Layout>
         <div className="min-h-screen flex flex-col items-center justify-start pt-5 px-2 sm:px-8">
           {/* Headline on top, centered */}

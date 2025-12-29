@@ -35,7 +35,7 @@ function Users() {
 
   return (
     <>
-      <div className="fixed inset-0 -z-10 w-full h-full bg-gradient-to-b from-blue-950 via-blue-800 to-purple-700" />
+      <div className="fixed inset-0 -z-10 w-full h-full bg-linear-to-b from-blue-950 via-blue-800 to-purple-700" />
       <Layout>
         <div className="min-h-screen flex flex-col items-center justify-start pt-2 px-2 sm:px-8">
           {/* Header and main content */}
@@ -63,7 +63,7 @@ function Users() {
                   </p>
                 </div>
               </div>
-              <div className="flex justify-end mt-20 sm:-mt-0">
+              <div className="flex justify-end mt-20 sm:mt-0">
                 <button
                   className="flex items-center gap-2 text-white "
                   style={{ fontSize: "0.9rem" }}

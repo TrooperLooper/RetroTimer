@@ -157,7 +157,7 @@ function Play() {
   if (error) {
     return (
       <>
-        <div className="fixed inset-0 -z-10 w-full h-full bg-gradient-to-b from-blue-950 via-blue-800 to-purple-700" />
+        <div className="fixed inset-0 -z-10 w-full h-full bg-linear-to-b from-blue-950 via-blue-800 to-purple-700" />
         <Layout>
           <div className="text-red-500 text-center mt-24">{error}</div>
         </Layout>
@@ -168,7 +168,7 @@ function Play() {
   if (!game || !currentUser) {
     return (
       <>
-        <div className="fixed inset-0 -z-10 w-full h-full bg-gradient-to-b from-blue-950 via-blue-800 to-purple-700" />
+        <div className="fixed inset-0 -z-10 w-full h-full bg-linear-to-b from-blue-950 via-blue-800 to-purple-700" />
         <Layout>
           <div className="text-white text-center mt-24">Loading...</div>
         </Layout>
@@ -178,7 +178,7 @@ function Play() {
 
   return (
     <>
-      <div className="fixed inset-0 -z-10 w-full h-full bg-gradient-to-b from-green-900 via-green-500 to-yellow-300" />
+      <div className="fixed inset-0 -z-10 w-full h-full bg-linear-to-b from-green-900 via-green-500 to-yellow-300" />
       <Layout>
         <div className="min-h-screen flex flex-col items-center pt-24 px-2 sm:px-8">
           <div className="flex flex-row gap-8 items-start">

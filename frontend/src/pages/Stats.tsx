@@ -84,7 +84,7 @@ function Stats() {
 
   return (
     <>
-      <div className="GRADIENT fixed inset-0 -z-10 w-full h-full bg-gradient-to-b from-blue-950 via-blue-800 to-purple-700" />
+      <div className="GRADIENT fixed inset-0 -z-10 w-full h-full bg-linear-to-b from-blue-950 via-blue-800 to-purple-700" />
       <Layout>
         {/* Center the main content */}
         <div className="flex flex-col items-center justify-center min-h-screen w-full">
